@@ -1,0 +1,90 @@
+#CSK Players with runs > 1000 in descending order
+SELECT player, Runs
+FROM Chennai
+WHERE Runs>1000
+Order by Runs DESC;
+
+#Players who has played more than 100 matches for CSK
+SELECT Player, mat
+FROM Chennai
+WHERE mat>100
+Order by mat DESC;
+
+
+#Players with Batting Average>25
+SELECT Player,Ave
+FROM Chennai
+Group by Player
+HAVING Ave>25 order by Ave DESC;
+
+
+#Player with Batting Average>25 (Min 10 inns)
+SELECT Player,Ave
+FROM Chennai
+WHERE Inns>10
+Group by Player
+HAVING Ave>25 order by Ave DESC;
+
+
+#Top 10 Players of CSK with Highest strike rate
+SELECT player,SR
+FROM Chennai
+GROUP BY player
+Order by SR DESC
+Limit 10;
+
+
+#Players who represented CSK IN 2018 and 2019 and no. of matches
+SELECT player, Mat
+FROM Chennai
+WHERE Span between 2018 and 2019
+Order by Mat DESC;
+
+
+
+#Top 10 Player with Most 6s and Fours for CSK
+SELECT player, 4s,6s
+FROM Chennai
+GROUP BY player, 4s, 6s
+ORDER BY 4s DESC
+LIMIT 10;
+
+
+#Players with most no. of not outs
+SELECT player, NO
+FROM Chennai
+ORDER BY NO DESC
+LIMIT 10;
+
+
+#Combining Two Tables using Inner join
+SELECT batting.player,batting.Runs,bowling.Wickets
+FROM batting
+INNER JOIN bowling
+ON batting.player=bowling.player;
+
+
+
+#Players with more than 1000 runs and 50 wickets
+SELECT batting.player,batting.Runs,bowling.Wickets,batting.Ave,bowling.Matches
+FROM batting
+INNER JOIN bowling
+ON batting.player=bowling.player
+WHERE bowling.wickets>50 AND batting.Runs>1000;
+
+
+
+#Top Wicket takers for CSK:
+SELECT bowling.Player,Wickets
+FROM bowling
+Order by wickets DESC;
+
+
+#Players with Less Bowling Average
+SELECT player,(Bowl_avg)
+FROM bowling
+WHERE Bowl_Avg between 10 and 25
+ORDER BY Bowl_avg ASC;
+
+
+
